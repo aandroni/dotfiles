@@ -52,6 +52,7 @@ cmp.setup {
     end,
   },
   mapping = {
+    -- TODO: cleanup this
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-e>"] = cmp.mapping.abort(),
