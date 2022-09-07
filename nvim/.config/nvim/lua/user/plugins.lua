@@ -83,6 +83,18 @@ return packer.startup(function(use)
   -- Git
   use "lewis6991/gitsigns.nvim"
 
+  -- Clojure
+  use "tpope/vim-dispatch"
+  use "clojure-vim/vim-jack-in"
+  -- use "tpope/vim-fireplace"
+  use "Olical/conjure"
+
+  -- Send text to screen/tmux/kitty
+  use "jpalardy/vim-slime" -- works but cannot send to qtconsole
+  use "mtikekar/nvim-send-to-term" -- works with qt console (but a little weird)
+  use "HiPhish/repl.nvim" -- Cannot send lines
+  use "bfredl/nvim-ipy" -- Doesn't work with qtconsole
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
