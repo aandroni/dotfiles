@@ -42,3 +42,11 @@ zsh_add_file "zsh-vim-mode"
 # Key-bindings
 # bindkey -s '^o' 'ranger^M'
 
+# Load home/work settings if existent
+if [[ -f "$HOME/.config/home-settings" ]] then
+    source "$HOME/.config/home-settings"
+fi
+if [[ -f "$HOME/.config/work-settings" ]] then
+    source "$HOME/.config/work-settings"
+fi
+
