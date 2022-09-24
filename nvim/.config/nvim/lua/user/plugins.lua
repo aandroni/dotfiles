@@ -101,6 +101,9 @@ return packer.startup(function(use)
   use "HiPhish/repl.nvim" -- Cannot send lines
   use "bfredl/nvim-ipy" -- Doesn't work with qtconsole
 
+  -- Go
+  use "fatih/vim-go"
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

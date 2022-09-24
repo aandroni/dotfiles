@@ -113,4 +113,9 @@ lsp_config.html.setup{
     flags = lsp_flags,
     capabilities = capabilities,
 }
+lsp_config.gopls.setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+}
 
