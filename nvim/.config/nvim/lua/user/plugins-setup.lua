@@ -76,8 +76,11 @@ return packer.startup(function(use)
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use "neovim/nvim-lspconfig"
+  use "williamboman/mason.nvim"
+  use "williamboman/mason-lspconfig.nvim"
+  use { "glepnir/lspsaga.nvim", branch = "main" }
+  use "onsails/lspkind.nvim"
 
   -- Telescope
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
