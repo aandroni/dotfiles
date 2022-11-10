@@ -38,6 +38,8 @@ opt.splitbelow = true
 -- dash
 opt.iskeyword:append("-") -- To have dash separated words considered as one word
 
+-- completion
+opt.completeopt = {"menu", "menuone", "noselect"}
 
 
 --[=====[

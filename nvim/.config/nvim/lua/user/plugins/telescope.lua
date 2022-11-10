@@ -1,11 +1,12 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
+local telescope_ok, telescope = pcall(require, "telescope")
+if not telescope_ok then
   return
 end
 
--- telescope.load_extension('media_files')
-
-local actions = require "telescope.actions"
+local actions_ok, actions = pcall(require, "telescope.actions")
+if not actions_ok then
+  return
+end
 
 telescope.setup {
   defaults = {
@@ -103,3 +104,4 @@ telescope.setup {
   },
 }
 
+telescope.load_extension("fzf")
