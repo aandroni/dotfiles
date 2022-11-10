@@ -82,6 +82,10 @@ return packer.startup(function(use)
   use { "glepnir/lspsaga.nvim", branch = "main" }
   use "onsails/lspkind.nvim"
 
+  -- formatting and linting
+  use "jose-elias-alvarez/null-ls.nvim"
+  use "jayp0521/mason-null-ls.nvim"
+
   -- Telescope
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
   use { "nvim-telescope/telescope.nvim", branch = "0.1.x" }
