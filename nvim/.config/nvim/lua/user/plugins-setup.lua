@@ -48,6 +48,10 @@ return packer.startup(function(use)
   -- use "christoomey/vim-tmux-navigator"
   use "szw/vim-maximizer"
 
+  -- file explorer
+  use "nvim-tree/nvim-tree.lua"
+  use "kyazdani42/nvim-web-devicons"
+
   -- Essential plugins
   use "tpope/vim-surround"
   use "numToStr/Comment.nvim"
@@ -58,10 +62,7 @@ return packer.startup(function(use)
   use "arcticicestudio/nord-vim"
 
   -- Statusline
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
+  use "nvim-lualine/lualine.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin

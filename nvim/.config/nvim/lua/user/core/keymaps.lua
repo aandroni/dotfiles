@@ -29,7 +29,7 @@ keymap("n", "<leader>nh", ":nohl<CR>", opts)
 -- keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- NOTE: <cr> = carriage return, 'e' for explorer
-keymap("n", "<leader>e", ":Lex 30<cr>", opts)
+-- keymap("n", "<leader>e", ":Lex 30<cr>", opts)
 
 -- Resize with arrows
 -- keymap("n", "<C-Up>", ":resize +2<CR>", opts)
@@ -73,6 +73,9 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- vim-maximizer
 keymap("n", "<leader>sm", ":MaximizerToggle<CR>", opts)
+
+-- nvim-tree
+keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
