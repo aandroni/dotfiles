@@ -29,7 +29,7 @@ local on_attach = function(client, bufnr)
   keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- configure html server
 lspconfig["html"].setup({
