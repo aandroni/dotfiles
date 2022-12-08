@@ -112,6 +112,7 @@ return packer.startup(function(use)
   use "mtikekar/nvim-send-to-term" -- works with qt console (but a little weird)
   use "HiPhish/repl.nvim" -- Cannot send lines
   use "bfredl/nvim-ipy" -- Doesn't work with qtconsole
+  use "hkupty/iron.nvim"
 
   -- Go
   use "fatih/vim-go"
