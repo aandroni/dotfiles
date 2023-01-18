@@ -3,7 +3,7 @@ if not saga_ok then
   return
 end
 
-saga.init_lsp_saga({
+saga.setup({
   finder_action_keys = {
     open = "<CR>",
   },
