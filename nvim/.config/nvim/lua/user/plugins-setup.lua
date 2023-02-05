@@ -60,6 +60,7 @@ return packer.startup(function(use)
   use "folke/tokyonight.nvim"
   use "gruvbox-community/gruvbox"
   use "arcticicestudio/nord-vim"
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   -- Statusline
   use "nvim-lualine/lualine.nvim"
