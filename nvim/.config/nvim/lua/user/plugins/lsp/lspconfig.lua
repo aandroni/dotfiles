@@ -49,8 +49,14 @@ lspconfig["tailwindcss"].setup({
   on_attach = on_attach,
 })
 
--- configure pyright server
-lspconfig["pyright"].setup({
+-- -- configure pyright server
+-- lspconfig["pyright"].setup({
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+-- })
+
+-- configure python-lsp server
+lspconfig["pylsp"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })
