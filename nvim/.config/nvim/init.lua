@@ -881,9 +881,12 @@ require("lazy").setup({
     end
 	},
 
-  -- Fugitive
+  -- Git
   {
     "tpope/vim-fugitive",
+  },
+  {
+    "tpope/vim-rhubarb",
   },
 }, {
 	ui = {
