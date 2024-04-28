@@ -875,7 +875,16 @@ require("lazy").setup({
 	-- Go
 	{
 		"fatih/vim-go",
+    config = function()
+      vim.keymap.set("n", "<leader>tt", vim.cmd.GoTestFunc, { desc = "Run [Test]" })
+      vim.keymap.set("n", "<leader>ts", vim.cmd.GoTest, { desc = "Run [T]est[S]" })
+    end
 	},
+
+  -- Fugitive
+  {
+    "tpope/vim-fugitive",
+  },
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
