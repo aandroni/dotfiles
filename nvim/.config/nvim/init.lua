@@ -875,10 +875,6 @@ require("lazy").setup({
 	-- Go
 	{
 		"fatih/vim-go",
-    config = function()
-      vim.keymap.set("n", "<leader>tt", vim.cmd.GoTestFunc, { desc = "Run [Test]" })
-      vim.keymap.set("n", "<leader>ts", vim.cmd.GoTest, { desc = "Run [T]est[S]" })
-    end
 	},
 
   -- Git
@@ -908,6 +904,16 @@ require("lazy").setup({
 			lazy = "💤 ",
 		},
 	},
+})
+
+-- Alternatively, you can put file specific settings in: ~/.config/nvim/after/ftplugin/<file_type>.lua
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+	group = vim.api.nvim_create_augroup("vim-go", { clear = true }),
+  pattern = {"*.go"},
+  callback = function(_)
+    vim.keymap.set("n", "<leader>tt", vim.cmd.GoTestFunc, { noremap = true, silent = true, buffer = true, desc = "Run [Test]" })
+    vim.keymap.set("n", "<leader>ts", vim.cmd.GoTest, { noremap = true, silent = true, buffer = true, desc = "Run [T]est[S]" })
+  end
 })
 
 -- Customization
