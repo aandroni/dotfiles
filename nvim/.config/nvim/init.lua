@@ -550,6 +550,7 @@ require("lazy").setup({
 				-- clangd = {},
 				gopls = {},
 				ruff_lsp = {},
+        pylsp = {},
 				-- pyright = {},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -884,6 +885,46 @@ require("lazy").setup({
   {
     "tpope/vim-rhubarb",
   },
+
+  -- REPL
+  {
+    "Vigemus/iron.nvim",
+    config = function()
+      local iron = require("iron.core")
+      iron.setup({
+        config = {
+          -- Whether a repl should be discarded or not
+          scratch_repl = true,
+          repl_definition = {
+            sh = {
+              command = {"zsh"}
+            }
+          },
+          -- How the repl window will be displayed
+          repl_open_cmd = "rightbelow 40vsplit | set nonu | set norelativenumber | set signcolumn=no ",
+        },
+        keymaps = {
+          send_motion = "<leader>sc",
+          visual_send = "<leader>sc",
+          send_file = "<leader>sf",
+          send_line = "<leader>sl",
+          send_until_cursor = "<leader>su",
+          send_mark = "<leader>sm",
+          mark_motion = "<leader>mc",
+          mark_visual = "<leader>mc",
+          remove_mark = "<leader>md",
+          cr = "<leader>s<cr>",
+          interrupt = "<leader>s<leader>",
+          exit = "<leader>sq",
+          clear = "<leader>cl",
+        },
+        highlight = {
+          italic = true,
+        },
+        ignore_blank_lines = false,
+      })
+    end,
+  },
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -915,6 +956,12 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
     vim.keymap.set("n", "<leader>ts", vim.cmd.GoTest, { noremap = true, silent = true, buffer = true, desc = "Run [T]est[S]" })
   end
 })
+
+-- REPL
+vim.keymap.set('n', '<leader>rs', '<cmd>IronRepl<cr>')
+vim.keymap.set('n', '<leader>rr', '<cmd>IronRestart<cr>')
+vim.keymap.set('n', '<leader>rf', '<cmd>IronFocus<cr>')
+vim.keymap.set('n', '<leader>rh', '<cmd>IronHide<cr>')
 
 -- Customization
 local ok, _ = pcall(require, "user.customize")
