@@ -88,7 +88,7 @@ P.S. You can delete this when you're done too. It's your config now! :)
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = ","
 
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
@@ -891,6 +891,7 @@ require("lazy").setup({
     "Vigemus/iron.nvim",
     config = function()
       local iron = require("iron.core")
+      local view = require("iron.view")
       iron.setup({
         config = {
           -- Whether a repl should be discarded or not
@@ -901,25 +902,25 @@ require("lazy").setup({
             }
           },
           -- How the repl window will be displayed
-          repl_open_cmd = "rightbelow 40vsplit | set nonu | set norelativenumber | set signcolumn=no ",
+          repl_open_cmd = view.split("30%")
         },
         keymaps = {
-          send_motion = "<leader>sc",
-          visual_send = "<leader>sc",
-          send_file = "<leader>sf",
-          send_line = "<leader>sl",
-          send_until_cursor = "<leader>su",
-          send_mark = "<leader>sm",
-          mark_motion = "<leader>mc",
-          mark_visual = "<leader>mc",
-          remove_mark = "<leader>md",
-          cr = "<leader>s<cr>",
-          interrupt = "<leader>s<leader>",
-          exit = "<leader>sq",
-          clear = "<leader>cl",
+          send_motion = "<localleader>sc",
+          visual_send = "<localleader>sc",
+          send_file = "<localleader>sf",
+          send_line = "<localleader>sl",
+          send_until_cursor = "<localleader>su",
+          send_mark = "<localleader>sm",
+          mark_motion = "<localleader>mc",
+          mark_visual = "<localleader>mc",
+          remove_mark = "<localleader>md",
+          cr = "<localleader>s<cr>",
+          interrupt = "<localleader>s<localleader>",
+          exit = "<localleader>sq",
+          clear = "<localleader>cl",
         },
         highlight = {
-          italic = true,
+          italic = false,
         },
         ignore_blank_lines = false,
       })
@@ -952,8 +953,8 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
 	group = vim.api.nvim_create_augroup("vim-go", { clear = true }),
   pattern = {"*.go"},
   callback = function(_)
-    vim.keymap.set("n", "<leader>tt", vim.cmd.GoTestFunc, { noremap = true, silent = true, buffer = true, desc = "Run [Test]" })
-    vim.keymap.set("n", "<leader>ts", vim.cmd.GoTest, { noremap = true, silent = true, buffer = true, desc = "Run [T]est[S]" })
+    vim.keymap.set("n", "<leader>tc", vim.cmd.GoTestFunc, { noremap = true, silent = true, buffer = true, desc = "Run [Test] under [Cursor]" })
+    vim.keymap.set("n", "<leader>ta", vim.cmd.GoTest, { noremap = true, silent = true, buffer = true, desc = "Run [T]ests [All]" })
   end
 })
 
