@@ -4,12 +4,8 @@ SAVEHIST=10000
 HISTFILE=~/.zsh_history
 setopt appendhistory
 
-# some useful options (man zshoptions)
-#setopt autocd extendedglob nomatch menucomplete
-#setopt interactive_comments
-#stty stop undef # Disable ctrl-s to freeze terminal.
-#zle_highlight=('paste:none')
-#unsetopt BEEP # Disable beep
+bindkey -e
+export KEYTIMEOUT=1
 
 # Tab completions
 autoload -Uz compinit
@@ -18,35 +14,10 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots) # Include hidden files.
 
-#autoload -U up-line-or-beginning-search
-#autoload -U down-line-or-beginning-search
-#zle -N up-line-or-beginning-search
-#zle -N down-line-or-beginning-search
-
-# Useful Functions
-source "$ZDOTDIR/zsh-functions"
-
 # Normal files to source
-zsh_add_file "zsh-aliases"
-zsh_add_file "zsh-prompt"
-zsh_add_file "zsh-vim-mode"
+source "$ZDOTDIR/zsh-aliases"
+source "$ZDOTDIR/zsh-prompt"
 
-# Plugins
-#zsh_add_plugin "zsh-users/zsh-autosuggestions"
-#zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
-#zsh_add_plugin "hlissner/zsh-autopair"
-# zsh_add_completion "esc/conda-zsh-completion" false
-# For more plugins: https://github.com/unixorn/awesome-zsh-plugins
-# More completions https://github.com/zsh-users/zsh-completions
-
-# Key-bindings
-# bindkey -s '^o' 'ranger^M'
-
-# Load home/work settings if existent
-if [[ -f "$HOME/.config/home-settings" ]] then
-    source "$HOME/.config/home-settings"
-fi
-if [[ -f "$HOME/.config/work-settings" ]] then
-    source "$HOME/.config/work-settings"
-fi
+# Load custom settings if existent
+[ -f "$HOME/.config/customize" ] && source "$HOME/.config/customize"
 
