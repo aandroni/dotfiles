@@ -7,7 +7,7 @@ config.font_size = 14
 config.enable_tab_bar = true
 config.window_background_opacity = 1
 
-config.leader = { key = "a", mods = "CTRL" }
+config.leader = { key = " ", mods = "CTRL" }
 
 local act = wezterm.action
 config.keys = {
