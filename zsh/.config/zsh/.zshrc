@@ -19,5 +19,5 @@ source "$ZDOTDIR/zsh-aliases"
 source "$ZDOTDIR/zsh-prompt"
 
 # Load custom settings if existent
-[ -f "$HOME/.config/customize" ] && source "$HOME/.config/customize"
+[ -f "$HOME/.config/zsh/zsh-customize" ] && source "$HOME/.config/zsh/zsh-customize"
 
