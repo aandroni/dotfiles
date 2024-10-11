@@ -891,11 +891,6 @@ require("lazy").setup({
     "tpope/vim-rhubarb",
   },
 
-	-- Copilot
-	{
-		"github/copilot.vim",
-	},
-
   -- REPL
   {
     "Vigemus/iron.nvim",
