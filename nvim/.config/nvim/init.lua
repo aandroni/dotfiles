@@ -111,9 +111,12 @@ vim.opt.mouse = "a"
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = "unnamedplus"
+vim.schedule(function()
+  vim.opt.clipboard = "unnamedplus"
+end)
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -412,7 +415,22 @@ require("lazy").setup({
 		end,
 	},
 
-	{ -- LSP Configuration & Plugins
+  -- LSP Plugins
+  {
+    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+    -- used for completion, annotations and signatures of Neovim apis
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        -- Load luvit types when the `vim.uv` word is found
+        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+      },
+    },
+  },
+  { 'Bilal2453/luvit-meta', lazy = true },
+	{
+    -- Main LSP Configuration
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for Neovim
@@ -424,9 +442,8 @@ require("lazy").setup({
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 			{ "j-hui/fidget.nvim", opts = {} },
 
-			-- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
-			-- used for completion, annotations and signatures of Neovim apis
-			{ "folke/neodev.nvim", opts = {} },
+      -- Allows extra capabilities provided by nvim-cmp
+      'hrsh7th/cmp-nvim-lsp',
 		},
 		config = function()
 			-- Brief aside: **What is LSP?**
@@ -531,7 +548,25 @@ require("lazy").setup({
 							buffer = event.buf,
 							callback = vim.lsp.buf.clear_references,
 						})
+
+            vim.api.nvim_create_autocmd('LspDetach', {
+              group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+              callback = function(event2)
+                vim.lsp.buf.clear_references()
+                vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+              end,
+            })
 					end
+
+          -- The following code creates a keymap to toggle inlay hints in your
+          -- code, if the language server you are using supports them
+          --
+          -- This may be unwanted, since they displace some of your code
+          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+            map('<leader>th', function()
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+            end, '[T]oggle Inlay [H]ints')
+          end
 				end,
 			})
 
@@ -554,8 +589,8 @@ require("lazy").setup({
 			local servers = {
 				-- clangd = {},
 				gopls = {},
-				ruff_lsp = {},
-        pylsp = {},
+				ruff = {},
+        -- pylsp = {},
 				-- pyright = {},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -749,6 +784,11 @@ require("lazy").setup({
 					--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
 				}),
 				sources = {
+          {
+            name = 'lazydev',
+            -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
+            group_index = 0,
+          },
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "path" },
@@ -888,6 +928,7 @@ require("lazy").setup({
   {
     "tpope/vim-fugitive",
   },
+
   {
     "tpope/vim-rhubarb",
   },
